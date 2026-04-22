@@ -1,78 +1,112 @@
 # AGENTS.md
 
-Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
+This repository is a template project for a statically generated blog built on Astro.
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+## 1. Read Before Implementation
 
-## 1. Think Before Coding
+Before any non-trivial task:
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
+1. Read `docs/index.md`
+2. Read any task-relevant docs in `docs/`
+3. Check `package.json` scripts before deciding how to run or verify changes
 
-Before implementing:
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
+If the needed documentation does not exist, say so explicitly instead of inventing project rules.
+Do not claim to have read documents that do not exist.
 
-## 2. Simplicity First
+## 2. Plan Non-Trivial Tasks
 
-**Minimum code that solves the problem. Nothing speculative.**
+For non-trivial tasks, briefly state:
 
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
+1. what will change
+2. how it will be verified
+3. any assumptions or risks
 
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+## 3. Project Structure Rules
 
-## 3. Surgical Changes
+Follow Astro conventions unless project documents specify otherwise.
 
-**Touch only what you must. Clean up only your own mess.**
+### Pages And Routes
 
-When editing existing code:
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
+- Prefer putting route-level pages in `src/pages/`
+- Do not create new routing conventions without a clear reason
 
-When your changes create orphans:
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
+### Components
 
-The test: Every changed line should trace directly to the user's request.
+- Put reusable UI pieces in `src/components/` or the existing component location
+- Avoid creating many tiny wrapper components with no real reuse value
 
-## 4. Goal-Driven Execution
+### Static Assets
 
-**Define success criteria. Loop until verified.**
+- Put static assets in `public/` unless there is an existing different pattern
 
-Transform tasks into verifiable goals:
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
+## 4. Implementation Rules
 
-For multi-step tasks, state a brief plan:
-```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-```
+### Preserve Blog Clarity
 
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+This is a blog-oriented repository.
+Prefer readable structure over premature abstraction.
 
-## 5. Git Commits
+### Avoid Framework Drift
 
-When asked to commit changes:
-- Use Conventional Commits.
-- Format: `<type>(<scope>): <subject>`.
-- Allowed types: `feat`, `fix`, `refactor`, `docs`, `test`, `chore`.
-- Keep the subject concise, imperative, and in English.
-- Do not end the subject with a period.
-- For non-trivial changes, add a body that explains why the change was made.
-- If the change spans multiple areas, prefer the most user-visible or behaviorally significant scope.
+- Do not introduce patterns from other frameworks unless clearly needed
+- Do not convert the project structure into a different app architecture without being asked
 
-If more detail is needed, follow `docs/commit-convention.md`.
+### Keep Changes Aligned With User Intent
 
----
+Every changed file should map directly to the request.
 
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+### No Speculative Features
+
+Do not introduce new large subsystems or infrastructure unless explicitly requested or already documented as part of the project plan.
+Examples include CMS integrations, analytics, i18n, complex theme systems, or content-pipeline overhauls.
+
+## 5. Verification
+
+Before finishing:
+
+- Use the scripts that actually exist in `package.json`
+- Prefer minimal valid verification for the task
+- For build-affecting changes, run `bun build`
+- If a script does not exist, do not pretend it passed
+
+If verification could not be completed, state:
+
+- what was not verified
+- why
+- what risk remains
+
+## 6. Documentation Updates
+
+If your change affects:
+
+- repository structure
+- authoring workflow
+- component usage patterns
+- theme or layout conventions
+- commit rules
+
+then update the relevant file in `docs/`.
+
+If the documentation is missing, mention the missing doc and suggest the file that should be added.
+
+## 7. Output Requirements
+
+When finishing a task, explain:
+
+- what changed
+- why it changed
+- which files were touched
+- what was verified
+- any assumptions, unverified items, or remaining risks
+
+## 8. Current Known Commands
+
+Use the actual scripts defined in `package.json`:
+
+- `bun dev`
+- `bun build`
+- `bun preview`
+- `bun astro`
+
+Do not assume lint or test scripts exist unless they are added later.
+If scripts and docs disagree, follow the scripts that actually exist in `package.json`.

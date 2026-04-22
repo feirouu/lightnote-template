@@ -13,7 +13,7 @@ Use this format:
 Example:
 
 ```text
-fix(auth): prevent duplicate login submit
+fix(home): correct hero spacing on mobile
 ```
 
 ## Types
@@ -33,10 +33,9 @@ The scope should name the main area affected by the change.
 
 Prefer short scopes such as:
 
-- `auth`
-- `editor`
-- `notes`
+- `home`
 - `ui`
+- `content`
 - `docs`
 - `build`
 
@@ -57,14 +56,14 @@ The subject line should:
 
 Good examples:
 
-- `feat(editor): add slash command menu`
-- `fix(ui): align toolbar actions on mobile`
+- `feat(content): add MDX post layout`
+- `fix(ui): align card actions on mobile`
 - `docs(readme): clarify local development steps`
 
 Bad examples:
 
-- `feat(editor): added slash command menu`
-- `fix(ui): fixes toolbar alignment issue.`
+- `feat(content): added MDX post layout`
+- `fix(ui): fixes card action alignment.`
 - `chore: some updates`
 
 ## Body
@@ -76,10 +75,10 @@ The body should explain why the change was needed, especially when the reason is
 Example:
 
 ```text
-fix(editor): preserve cursor after auto-save
+fix(ui): preserve button icon spacing in dark mode
 
-Auto-save was reinitializing the editor state, which caused the
-selection to jump to the start of the document during longer edits.
+The shared button styles were applying conflicting spacing utilities,
+which made inline icons look uneven against the current theme tokens.
 ```
 
 ## Choosing The Type

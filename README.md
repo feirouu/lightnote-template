@@ -1,43 +1,55 @@
-# Astro Starter Kit: Minimal
+# lightnote-template
 
-```sh
-bun create astro@latest -- --template minimal
-```
+`lightnote-template` is a lightweight Astro starter for a statically generated, blog-oriented site.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The repository currently includes:
 
-## 🚀 Project Structure
+- Astro 6 for routing and static builds
+- React integration for interactive UI components
+- MDX integration for content authoring
+- Tailwind CSS 4 for styling
+- shadcn-style UI primitives configured through `components.json`
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
+
+The current source tree is intentionally small:
 
 ```text
 /
+├── docs/
+│   ├── commit-convention.md
+│   └── index.md
 ├── public/
+│   ├── favicon.ico
+│   └── favicon.svg
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/ui/
+│   │   ├── button.tsx
+│   │   └── card.tsx
+│   ├── lib/utils.ts
+│   ├── pages/index.astro
+│   └── styles/global.css
+├── astro.config.mjs
+├── components.json
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Use the scripts defined in `package.json`:
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command | Purpose |
+| :------ | :------ |
+| `bun run dev` | Start the local Astro development server |
+| `bun run build` | Build the site for production |
+| `bun run preview` | Preview the production build locally |
+| `bun run astro` | Run Astro CLI commands |
 
-## 🧞 Commands
+## Documentation
 
-All commands are run from the root of the project, from a terminal:
+- [docs/index.md](./docs/index.md): repository documentation index and current project snapshot
+- [docs/commit-convention.md](./docs/commit-convention.md): Conventional Commits guidance for this repository
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+## Current Status
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This template is still close to a starter project. It has a minimal homepage, shared styling setup, and a small set of UI primitives. Content collections, blog authoring workflow, and broader architecture conventions are not documented yet.
