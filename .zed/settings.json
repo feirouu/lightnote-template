@@ -1,0 +1,7 @@
+{
+  "tab_size": 2,
+  "project_name": "LightnoteTemplate",
+  "code_actions_on_format": {
+    "source.fixAll.biome": true,
+  },
+}
